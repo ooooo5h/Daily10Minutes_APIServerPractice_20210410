@@ -2,6 +2,7 @@ package com.neppplus.daily10minutes_apiserverpractice_20210410
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.neppplus.daily10minutes_apiserverpractice_20210410.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
