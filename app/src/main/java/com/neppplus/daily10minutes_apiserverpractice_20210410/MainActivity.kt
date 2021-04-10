@@ -29,37 +29,39 @@ class MainActivity : BaseActivity() {
 
 //            서버에 로그인 요청(배울 내용)
 
-            ServerUtil.postRequestLogin(inputEmail, inputPassword, object : ServerUtil.JsonResponseHandler {
-                override fun onResponse(jsonObj: JSONObject) {
+            ServerUtil.postRequestLogin(
+                inputEmail,
+                inputPassword,
+                object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
 
-                    val codeNum = jsonObj.getInt("code")
+                        val codeNum = jsonObj.getInt("code")
 
-                    if (codeNum == 200) {
+                        if (codeNum == 200) {
+//                        로그인 성공한 경우
 
-                }
-                    
-                    else{
+                        } else {
 //                        로그인 실패 - 토스트로 띄워보자
 
-                        runOnUiThread {
-                            Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+                            runOnUiThread {
+                                Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+
+                            }
 
                         }
+
 
                     }
 
 
-            }
-
-
+                })
 
         }
-
     }
 
     override fun setValues() {
 
     }
-
-
 }
+
+
