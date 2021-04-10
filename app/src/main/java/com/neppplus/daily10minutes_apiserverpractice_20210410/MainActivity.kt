@@ -29,10 +29,7 @@ class MainActivity : BaseActivity() {
 
 //            서버에 로그인 요청(배울 내용)
 
-            ServerUtil.postRequestLogin(
-                inputEmail,
-                inputPassword,
-                object : ServerUtil.JsonResponseHandler {
+            ServerUtil.postRequestLogin(inputEmail, inputPassword, object : ServerUtil.JsonResponseHandler {
                     override fun onResponse(jsonObj: JSONObject) {
 
                         val codeNum = jsonObj.getInt("code")
@@ -41,10 +38,14 @@ class MainActivity : BaseActivity() {
 //                        로그인 성공한 경우
 
                         } else {
-//                        로그인 실패 - 토스트로 띄워보자
+//                            로그인 실패 - 토스트로 띄워보자
+//                            서버가 알려주는 실패 사유를 받아서 그 내용을 토스트로 띄우자
+
+                            val message = jsonObj.getString("message")
+
 
                             runOnUiThread {
-                                Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
 
                             }
 
