@@ -1,9 +1,9 @@
 package com.neppplus.daily10minutes_apiserverpractice_20210410.utils
 
-import okhttp3.FormBody
-import okhttp3.OkHttp
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import android.util.Log
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class ServerUtil {
 
@@ -44,7 +44,39 @@ class ServerUtil {
 //            클라이언트로써 동작하는 코드를 쉽게 작성하도록 도와주는 라이브러리 : OkHttp
             val client = OkHttpClient()
 
-            client.newCall(request)
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+//                서버에 연결 자체를 실패 (서버에 접근할 수 없는 상황)
+//                    데이터 요금 소진, 서버가 터짐 등의 이유로 아예 연결 자체에 실패한것이지 아이디나 비밀번호틀린게 아님!!  물리적으로 차단인거.
+
+//                    반대 <-> 로그인 비번 틀림, 회원가입 이메일 중복 등 로직 실패 => 연결은 성공, 결과만 실패
+//                    여기에서 처리하지 않는다
+//                    이런 경우 없다는 전제하에 코딩을 짜자
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+//                    서버의 응답을 받아내는데 성공한 경우
+//                    응답 (response) > 내부의 본문 (body)만 활용할거야 > 이걸 우리가 알아보기 쉽게 String 의 형태로 저장해보자
+
+//                    toString() x, string() 활용!!
+                    val bodyString = response.body!!.string()
+
+//                    bodyString은 인코딩 되어있는 상태라 => 사람이 읽기가 어렵다 = 한글이 깨진다
+//                    bodyString을 => JsonObject로 변환시키면 => 읽을 수 있게 됨
+
+                    val jsonObj = JSONObject(bodyString)
+
+
+                    Log.d("서버응답", jsonObj.toString())
+
+
+                }
+
+
+            })
 
 
 
