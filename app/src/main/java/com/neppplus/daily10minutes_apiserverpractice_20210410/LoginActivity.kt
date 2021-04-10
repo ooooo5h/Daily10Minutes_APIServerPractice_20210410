@@ -71,6 +71,7 @@ class LoginActivity : BaseActivity() {
                             val token = dataObj.getString("token")
 
 //                            SharedPreferences 에 저장 : 기기에 보관 (전원이 나가도 유지)
+                            ContextUtil.setLoginToken(mContext, token)
 
 
 
