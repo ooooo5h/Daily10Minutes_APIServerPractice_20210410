@@ -2,6 +2,7 @@ package com.neppplus.daily10minutes_apiserverpractice_20210410.utils
 
 import android.util.Log
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -132,6 +133,25 @@ class ServerUtil {
 
 
             })
+
+        }
+
+//        이메일 중복 체크 기능.
+
+        fun getRequestEmailCheck(email : String, handler: JsonResponseHandler?) {
+
+//            어디로? + 어떤데이터? => URL을 만들 때 한꺼번에 전부 적어야한다
+//            주소를 적는게 복잡해짐 => 복잡한 가공을 도와주는 (OkHttp 라이브러리 제공)클래스 활용 => URLBuilder
+
+            val urlBuilder = "${HOST_URL}/email_check".toHttpUrlOrNull()!!.newBuilder()
+
+//            만들어진 기초 URL에 필요한 파라미터들을 붙여주자
+            urlBuilder.addEncodedQueryParameter("email", email)
+
+//            붙일 정보가 다 붙었으면 최종적으로 String형태로 변환
+            val urlString = urlBuilder.build().toString()
+
+            Log.d("가공된 url", urlString)
 
         }
 

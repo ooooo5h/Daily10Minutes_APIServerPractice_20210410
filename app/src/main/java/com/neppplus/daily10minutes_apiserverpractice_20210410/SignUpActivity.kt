@@ -18,6 +18,21 @@ class SignUpActivity : BaseActivity() {
     }
     override fun setupEvents() {
 
+        emailCheckBtn.setOnClickListener {
+
+//            입력한 이메일을 받아서
+            val inputEmail = emailEdt.text.toString()
+
+//            서버에 중복인지 아닌지 물어보는 기능 API 활용해보자 => 그 결과를 텍스트뷰에 반영 (UI 반영)
+
+            ServerUtil.getRequestEmailCheck(inputEmail, null)
+
+        }
+
+
+
+
+
         signUpBtn.setOnClickListener {
 
             val inputEmail = emailEdt.text.toString()
