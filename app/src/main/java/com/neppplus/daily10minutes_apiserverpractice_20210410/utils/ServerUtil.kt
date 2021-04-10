@@ -35,7 +35,7 @@ class ServerUtil {
             val urlString = "${HOST_URL}/user"
 
 //            갈때 어떤 파라미터를 가져가야하나? POST vs GET 에 따라 다르다.
-//            POST - formData에 데이터 첨부
+//            POST - formData 에 데이터 첨부
 
             val formData = FormBody.Builder()
                 .add("email", email)
@@ -97,5 +97,44 @@ class ServerUtil {
 
 
         }
+
+//        서버의 회원가입 기능.
+
+        fun putRequestSignUp(email : String, pw : String, nickname : String, handler: JsonResponseHandler?) {
+
+            val urlString = "${HOST_URL}/user"
+
+            val formData = FormBody.Builder()
+                .add("email", email)
+                .add("password", pw)
+                .add("nick_name", nickname)
+                .build()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .put(formData)
+                .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+
+                }
+
+
+            })
+
+        }
+
+
     }
 }
