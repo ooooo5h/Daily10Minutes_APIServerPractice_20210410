@@ -1,5 +1,6 @@
 package com.neppplus.daily10minutes_apiserverpractice_20210410
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,13 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        signUpBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
+
+        }
 
         loginBtn.setOnClickListener {
 
