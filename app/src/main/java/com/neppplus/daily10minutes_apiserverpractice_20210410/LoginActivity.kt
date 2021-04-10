@@ -43,7 +43,30 @@ class LoginActivity : BaseActivity() {
                         val codeNum = jsonObj.getInt("code")
 
                         if (codeNum == 200) {
-//                        로그인 성공한 경우
+//                            로그인 성공한 경우
+//                            로그인 한 사람의 닉네임 + 환영합니다 토스트 띄우기
+//                            메인 화면으로 이동
+
+                            val dataObj = jsonObj.getJSONObject("data")
+                            val userObj = dataObj.getJSONObject("user")
+
+                            val nickname = userObj.getString("nick_name")
+
+                            runOnUiThread {
+
+                                Toast.makeText(mContext, "${nickname}님 환영합니다", Toast.LENGTH_SHORT).show()
+
+                                val myIntent = Intent(mContext, MainActivity::class.java)
+                                startActivity(myIntent)
+
+                                finish()
+
+
+                            }
+
+
+
+
 
                         } else {
 //                            로그인 실패 - 토스트로 띄워보자
