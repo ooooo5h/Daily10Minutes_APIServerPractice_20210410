@@ -20,6 +20,17 @@ class LoginActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+//        체크박스의 체크여부가 변화되면
+//        SharedPreferences 에 어떻게 반영되었는지 (체크/해제) 저장 예제
+
+        autoLoginCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+
+            Log.d("자동로그인체크여부", isChecked.toString())
+
+
+
+        }
+
         signUpBtn.setOnClickListener {
 
             val myIntent = Intent(mContext, SignUpActivity::class.java)
