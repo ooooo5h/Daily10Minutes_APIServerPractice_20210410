@@ -13,16 +13,41 @@
         android:layout_height="wrap_content"
         android:text="이메일" />
 
-    <EditText
-        android:id="@+id/emailEdt"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="로그인 시 사용할 이메일"
-        android:inputType="textEmailAddress"/>
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/emailEdt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="로그인 시 사용할 이메일"
+            android:inputType="textEmailAddress" />
+
+        <Button
+            android:id="@+id/emailCheckBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중복 확인" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/emailCheckResultTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 중복 확인을 해주세요"
+        android:textSize="12sp" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
         android:text="비밀번호" />
 
     <EditText
@@ -30,27 +55,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="비밀번호 입력 (8글자 이상)"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="닉네임" />
 
+
     <EditText
         android:id="@+id/nicknameEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="한글닉네임 입력"
-        android:singleLine="true"/>
+        android:singleLine="true" />
+
 
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="회원가입 신청" />
-
-
 
 
 </LinearLayout>
