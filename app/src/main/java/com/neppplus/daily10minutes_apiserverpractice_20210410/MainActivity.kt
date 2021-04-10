@@ -2,8 +2,11 @@ package com.neppplus.daily10minutes_apiserverpractice_20210410
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.neppplus.daily10minutes_apiserverpractice_20210410.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
@@ -26,7 +29,27 @@ class MainActivity : BaseActivity() {
 
 //            서버에 로그인 요청(배울 내용)
 
-            ServerUtil.postRequestLogin(inputEmail, inputPassword)
+            ServerUtil.postRequestLogin(inputEmail, inputPassword, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+
+                    val codeNum = jsonObj.getInt("code")
+
+                    if (codeNum == 200) {
+
+                }
+                    
+                    else{
+//                        로그인 실패 - 토스트로 띄워보자
+
+                        runOnUiThread {
+                            Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+
+                        }
+
+                    }
+
+
+            }
 
 
 
