@@ -130,10 +130,7 @@ class ServerUtil {
                     handler?.onResponse(jsonObj)
 
                 }
-
-
             })
-
         }
 
 //        이메일 중복 체크 기능.
@@ -148,13 +145,40 @@ class ServerUtil {
 //            만들어진 기초 URL에 필요한 파라미터들을 붙여주자
             urlBuilder.addEncodedQueryParameter("email", email)
 
-//            붙일 정보가 다 붙었으면 최종적으로 String형태로 변환
+//            붙일 정보가 다 붙었으면 최종적으로 String 형태로 변환
             val urlString = urlBuilder.build().toString()
 
             Log.d("가공된 url", urlString)
 
-        }
+//            어디로 + 어떤 데이터? => 모두 urlString에 적혀있는 상태
+//            어떤 메소뜨? get방식. 이걸 담아주는게 여기서는 Request에 담아주자
 
+            val request = Request.Builder()
+                .url(urlString)   // 이안에 담아서 가져가야하는것도 담겨있어서 get방식안에는 필요한 재료가 없슴.
+                .get()
+                .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+//                    response 전체 > 본문(body) 추출(String) > JSONObject 변환 > 이 기능을 불러낸 화면에 전달
+
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답본문", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+
+                }
+
+            })
+        }
 
     }
 }
