@@ -18,6 +18,7 @@
             android:src="@mipmap/ic_launcher" />
 
         <ImageView
+            android:id="@+id/projectImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="#88000000" />
@@ -30,6 +31,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/titleTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="제목 자리"
@@ -37,6 +39,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/descriptionTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
