@@ -25,7 +25,7 @@ class Project(
         fun getProjectFromJson (jsonObj : JSONObject) : Project {
             val project = Project()
 
-//            jsonObj에서 정보 추출 => projecet의 하위 항목 반영
+//            jsonObj에서 정보 추출 => project의 하위 항목 반영
 
             project.id = jsonObj.getInt("id")
             project.title = jsonObj.getString("title")
