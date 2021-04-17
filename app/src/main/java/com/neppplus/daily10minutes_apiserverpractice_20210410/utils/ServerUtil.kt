@@ -250,7 +250,7 @@ class ServerUtil {
             val request = Request.Builder()
                 .url(urlString)   // 어디로 가는지?
                 .post(formData)   // POST 방식 - 필요 데이터 (formData) 들고 가도록
-                .header("X-Http-Token", ContextUtil.getLoginToken(Context))
+                .header("X-Http-Token", ContextUtil.getLoginToken(context))
                 .build()
 
 //            정리된 정보를 들고 => 실제로 API 요청 진행
