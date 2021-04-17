@@ -12,13 +12,13 @@
         android:layout_height="250dp">
 
         <ImageView
+            android:id="@+id/projectImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
         <ImageView
-            android:id="@+id/projectImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="#88000000" />
