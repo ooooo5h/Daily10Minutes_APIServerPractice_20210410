@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
+import com.neppplus.daily10minutes_apiserverpractice_20210410.adapters.ProofAdapter
 import com.neppplus.daily10minutes_apiserverpractice_20210410.datas.Project
 import com.neppplus.daily10minutes_apiserverpractice_20210410.datas.Proof
 import com.neppplus.daily10minutes_apiserverpractice_20210410.utils.ServerUtil
@@ -22,6 +23,8 @@ class ViewProofByDateActivity : BaseActivity() {
     val mSelectedDate = Calendar.getInstance()
 
     val mProofList = ArrayList<Proof> ()
+
+    lateinit var mProofAdapter : ProofAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +82,9 @@ class ViewProofByDateActivity : BaseActivity() {
 
         mProject = intent.getSerializableExtra("project") as Project
 
+        mProofAdapter = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
+        proofListView.adapter = mProofAdapter
+
     }
 
 //    서버에서 선택된 날짜의 글을 받아와주는 함수
@@ -103,7 +109,10 @@ class ViewProofByDateActivity : BaseActivity() {
 
                 }
 
-
+//                나중에 게시글 목록을 추가로 불러옴 -> 리스트뷰 내용 변경 -> 어댑터 새로고침
+                runOnUiThread {
+                    mProofAdapter.notifyDataSetChanged()
+                }
 
             }
 
