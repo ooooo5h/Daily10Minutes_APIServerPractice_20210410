@@ -43,6 +43,22 @@ class ProofAdapter(
 
         proofContentTxt.text = proofDate.content
 
+//        인증글의 사진이 하나도 없다면 이미지뷰를 숨김처리하자
+//        하나라도 있다면 맨 앞 (0번칸)의 이미지를 반영하자
+
+        if (proofDate.imageUrls.size == 0) {
+
+            proofImg.visibility = View.GONE
+        }
+        else {
+            proofImg.visibility = View.VISIBLE
+
+//            0번칸 이미지 반영
+
+            Glide.with(mContext).load(proofDate.imageUrls[0]).into(proofImg)
+        }
+
+
         return row
 
 
