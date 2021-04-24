@@ -5,14 +5,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
+import com.neppplus.daily10minutes_apiserverpractice_20210410.datas.Project
+import com.neppplus.daily10minutes_apiserverpractice_20210410.datas.Proof
+import com.neppplus.daily10minutes_apiserverpractice_20210410.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_proof_by_date.*
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.time.Year
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ViewProofByDateActivity : BaseActivity() {
 
+    lateinit var mProject : Project
+
     val mSelectedDate = Calendar.getInstance()
+
+    val mProofList = ArrayList<Proof> ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +52,10 @@ class ViewProofByDateActivity : BaseActivity() {
                     dateTxt.text = simpleDateFormat.format(mSelectedDate.time)
 
 
+//                    서버에서, 선택된 날짜에 해당하는 글을 불러오는 작업하자
+                    getProofListByDate()
+
+
                 }
 
 
@@ -63,6 +76,28 @@ class ViewProofByDateActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        mProject = intent.getSerializableExtra("project") as Project
+
+    }
+
+//    서버에서 선택된 날짜의 글을 받아와주는 함수
+
+    fun getProofListByDate() {
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val dateStr = sdf.format(mSelectedDate.time)
+
+        ServerUtil.getRequestProjectProofListByDate(mContext, mProject.id, dateStr, object : ServerUtil.JsonResponseHandler {
+            override fun onResponse(jsonObj: JSONObject) {
+
+
+
+            }
+
+
+        })
+
 
     }
 
