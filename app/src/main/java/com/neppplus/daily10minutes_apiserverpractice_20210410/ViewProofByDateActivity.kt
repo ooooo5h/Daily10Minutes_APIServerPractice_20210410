@@ -101,7 +101,7 @@ class ViewProofByDateActivity : BaseActivity() {
                 val projectObj = dataObj.getJSONObject("project")
                 val proofsArr = projectObj.getJSONArray("proofs")
 
-                for (i in 0 until projectObj.length()) {
+                for (i in 0 until proofsArr.length()) {
 
 //                    인증글 JSON -> Proof 객체로 변환 -> mProofList에 추가
 
