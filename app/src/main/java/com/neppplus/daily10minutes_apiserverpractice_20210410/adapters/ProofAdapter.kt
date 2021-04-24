@@ -13,6 +13,7 @@ import com.neppplus.daily10minutes_apiserverpractice_20210410.R
 import com.neppplus.daily10minutes_apiserverpractice_20210410.datas.Project
 import com.neppplus.daily10minutes_apiserverpractice_20210410.datas.Proof
 import org.w3c.dom.Text
+import java.text.SimpleDateFormat
 
 class ProofAdapter(
         val mContext : Context,
@@ -61,6 +62,12 @@ class ProofAdapter(
 //        인증글에 달린 작성자 정보를 받아서 UI에 반영하자
         Glide.with(mContext).load(proofDate.writer.profileImgUrls[0]).into(writerProfileImg)
         writerNicknameTxt.text = proofDate.writer.nickName
+
+//        인증글에 달린 작성 일시를 '오전 8시 5분' 형태로 가공해서 텍스트뷰에 반영
+
+        val sdf = SimpleDateFormat("a H시 m분")
+
+        proofTimeTxt.text = sdf.format(proofDate.proofDateTime.time)
 
         return row
 
