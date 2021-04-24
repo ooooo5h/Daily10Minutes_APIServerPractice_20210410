@@ -58,6 +58,9 @@ class ProofAdapter(
             Glide.with(mContext).load(proofDate.imageUrls[0]).into(proofImg)
         }
 
+//        인증글에 달린 작성자 정보를 받아서 UI에 반영하자
+        Glide.with(mContext).load(proofDate.writer.profileImgUrls[0]).into(writerProfileImg)
+        writerNicknameTxt.text = proofDate.writer.nickName
 
         return row
 
