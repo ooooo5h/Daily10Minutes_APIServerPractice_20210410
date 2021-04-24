@@ -9,6 +9,9 @@ class Proof {
     var id = 0 // Int가 들어올 예정이라고 명시해주기
     var content = "" // String이 들어올 예정이라고 명시해주기
 
+//    이미지 경로 (URL) 들을 저장할 ArrayList
+    val imageUrls = ArrayList<String>()
+
     companion object {
 
 //        JSON 한덩어리 -> Proof로 변환 기능
@@ -21,6 +24,16 @@ class Proof {
             proof.id = jsonObj.getInt("id")
             proof.content = jsonObj.getString("content")
 
+//            imageUrls에 사진 경로들을 추가
+
+            val imagesArr = jsonObj.getJSONArray("images")
+            for (i in 0 until imagesArr.length()) {
+
+//                { } -> "img_url" String 추출 -> proof의 imageUrls에 cnrk
+
+                proof.imageUrls.add(imagesArr.getJSONObject(i).getString("img_url"))
+
+            }
 
 
             return proof
